@@ -4,8 +4,7 @@
 using namespace std;
 
 struct Jacket {
-    string brand, fabric, colour, size;
-    double price;
+    string brand, fabric, colour, size, price;
 };
 
 struct Jacket* input_jackets(struct Jacket* p)
@@ -49,15 +48,87 @@ void write_jackets(struct Jacket* p)
     myFile.close();
 }
 
+struct Jacket* output_jackets(struct Jacket* p)
+{
+    int i = 0;
+
+    //declaring ifstream and opening file for reading
+    ifstream myFile;
+    myFile.open("jacket.txt", ios::in);
+
+    //reading file into structure array
+    string item;
+    for (i = 0; i < 5; i++) {
+        getline(myFile, item);
+        (p + i)->brand = item;
+        getline(myFile, item);
+        (p + i)->fabric = item;
+        getline(myFile, item);
+        (p + i)->colour = item;
+        getline(myFile, item);
+        (p + i)->size = item;
+        getline(myFile, item);
+        (p + i)->price = "$" + item;
+    }
+
+    //closing file
+    myFile.close();
+
+    //outputting data
+    for (int i = 0; i < 5; i++) {
+        cout << "Jacket " << i + 1 << ":\t";
+        cout << (p + i)->brand << ", ";
+        cout << (p + i)->fabric << ", ";
+        cout << (p + i)->colour << ", ";
+        cout << (p + i)->size << ", ";
+        cout << (p + i)->price << endl;
+    }
+
+    return p;
+}
+
+void search_by_size(struct Jacket* p)
+{
+    //defining search variable
+    string search;
+    int i, found = 0;
+
+    //taking input for search term
+    cout << "\nEnter the size you want:\t";
+    cin >> search;
+
+    //searching for size
+    for (i = 0; i < 5; i++) {
+        if ((p + i)->size == search) {
+            found++;
+        }
+    }
+
+    //outputting results
+    cout << "\nWe have " << found << " Jackets of size " << search << " in stock.";
+}
+
 int main()
 {
     //Declaring struct array & pointer
     struct Jacket jackets[5];
     struct Jacket* ptr = jackets;
 
+    /* MEMBER2 INPUT STUFF
     //taking user input function
     input_jackets(ptr);
 
     //writing input to file function
     write_jackets(ptr);
+    */
+
+    //MEMBER1 OUTPUT STUFF
+    
+    //reading from file
+    output_jackets(ptr);
+
+    //search function
+    search_by_size(ptr);
+
+    return 0;
 }
