@@ -1,15 +1,25 @@
-Da Best Brand
+The Best Brand
 Denim
-14.9
+Blue
+L
+29.99
 A Better Brand
 Leather
-25
+Black
+M
+54.99
 My Favourite Brand
 Polycotton
-15.99
+Red
+XL
+45
 Slum Chic
 Brown Paper
+Brown
+M
 0.5
-Excess
+Supreme Excess
 Gold
-120000
+Gold
+XL
+500000
